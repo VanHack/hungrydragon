@@ -4,10 +4,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
 <!-- template from https://codepen.io/AJALACOMFORT/pen/oLpPPR by Ajala Comfort -->
-    <title>Hungry Dragon - Food Delivery Service Login/Signup</title>
+    <title>Hungry Dragon - Food Delivery Service Login</title>
 <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700" rel="stylesheet"> 
-    <!-- Custom CSS -->
-    <link href="css/login.css" rel="stylesheet">
 </head>
 <body>
 
@@ -19,62 +17,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
 
 <script type="text/babel">
-var Parent  = React.createClass({
-  getInitialState:function(){
-    return {signup:false,login:true};
-  },
-  switch:function(word){
-    var signup,login;
-    if(word == "signup"){signup = true;login = false;}
-    else{login = true; signup = false;}
-    return this.setState({login:login,signup:signup})
-    
-  },
-  render:function(){
-    
-        var self = this;
-        return (
-              <div>
-                      <div id="buttons">
-                        <p id="signupButton" onClick={self.switch.bind(null,"signup")} className={self.state.signup ? "yellow":"blue"}>Sign In</p>
-                      <p id="loginButton" onClick={self.switch.bind(null,"login")} className={self.state.login ? "yellow":"blue"}> Login</p>
-                      </div>
-              
-                   { self.state.signup?<Signup/> : null}
-                   {self.state.login? <Login /> : null}
-            
-             </div>
-        
-        )
-    
-    
-  }
-});
-
-
-var Signup = React.createClass({
-  
-  
-      render:function(){
-        
-        
-            return (
-            <div>
-                   
-                  <div id="signup">
-                        <input type="text" id="first" placeholder="First Name"/>
-                        <input type="text" id="last" placeholder="Last Name"/>
-                        <input type="email" id="email" placeholder="Email"/>
-                    <input type="password" id="password" placeholder="Password"/>
-                    <input type="password" id="confirm" placeholder="Confirm Password"/>
-                    <button id="send">Send</button>
-            </div>
-                </div>
-            
-            )
-      }
-});
-
 var Login = React.createClass({
       render:function(){
         
@@ -97,7 +39,7 @@ var Login = React.createClass({
 });
 
 
-ReactDOM.render(<Parent/>,document.getElementById("space"));
+ReactDOM.render(<Login/>,document.getElementById("space"));
 </script>
 </body>
 </html>
