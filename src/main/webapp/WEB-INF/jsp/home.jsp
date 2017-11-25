@@ -66,12 +66,26 @@
     <!-- Page Content -->
     <div class="container">
 
+       <div id="mapholder"></div>
+<!-- code derived from example at https://www.w3schools.com/html/html5_geolocation.asp -->
+ <script>
+function showPosition(position) {
+    var latlon = position.coords.latitude + "," + position.coords.longitude;
+
+    var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="+latlon+"&zoom=14&size=400x300&sensor=false&key=YOUR_:KEY";
+
+    document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
+}
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        document.getElementById("mapholder").innerHTML = "Geolocation is not supported by this browser.";
+    }
+ </script>
+
         <div class="row">
 
             <div class="col-md-3">
-                <!-- a href="#restaraunts" data-toggle="collapse"><p class="lead">Select Restaurant</p></a>
-this works fine as plain .html, but bootstrap v3 collapse seems not to play well with jsp
-                <div id="restaraunts" class="list-group collapse in" -->
                 <details open><summary><p class="lead">Select Restaurant</p></a></summary>
                 <div id="restaraunts" class="list-group">
                     <a href="#" class="list-group-item">Dragon Palace</a>
@@ -256,10 +270,10 @@ this works fine as plain .html, but bootstrap v3 collapse seems not to play well
     <!-- /.container -->
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </body>
 
