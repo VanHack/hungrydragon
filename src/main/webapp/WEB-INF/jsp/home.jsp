@@ -69,12 +69,16 @@
         <div class="row">
 
             <div class="col-md-3">
-                <p class="lead">Select Restaurant</p>
-                <div class="list-group">
+                <!-- a href="#restaraunts" data-toggle="collapse"><p class="lead">Select Restaurant</p></a>
+this works fine as plain .html, but bootstrap v3 collapse seems not to play well with jsp
+                <div id="restaraunts" class="list-group collapse in" -->
+                <details open><summary><p class="lead">Select Restaurant</p></a></summary>
+                <div id="restaraunts" class="list-group">
                     <a href="#" class="list-group-item">Dragon Palace</a>
                     <a href="#" class="list-group-item">Golden Dragon</a>
                     <a href="#" class="list-group-item">Dragon Express</a>
                 </div>
+                </details>
             </div>
 
             <div class="col-md-9">
