@@ -27,7 +27,7 @@ class Signup extends React.Component {
 	  username: '',
 	  password: '',
 	  passwordconfirm: '',
-	  email: ''
+	  ezmail: ''
 	};
         this.handleFirstnameChange = this.handleFirstnameChange.bind(this);
         this.handleLastnameChange = this.handleLastnameChange.bind(this);
@@ -35,7 +35,7 @@ class Signup extends React.Component {
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handlePasswordConfirmChange = this.handlePasswordConfirmChange.bind(this);
-        this.handleEmailChange = this.handleEmailChange.bind(this);
+        this.handleEzmailChange = this.handleEzmailChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
       }
       handleFirstnameChange(e){
@@ -56,8 +56,8 @@ class Signup extends React.Component {
       handlePasswordConfirmChange(e){
         this.setState({passwordconfirm: e.target.value});
       }
-      handleEmailChange(e){
-        this.setState({email: e.target.value});
+      handleEzmailChange(e){
+        this.setState({ezmail: e.target.value});
       }
       handleClick(){
         if (this.state.password != this.state.passwordconfirm)
@@ -65,7 +65,7 @@ class Signup extends React.Component {
 	  alert('Error! Password fields do not match!');
 	  return;
 	}
-        alert(this.state.firstname + ' ' + this.state.lastname + ' ' + this.state.address + ' ' + this.state.username + ' ' + this.state.password + ' ' + this.state.email);
+        alert(this.state.firstname + ' ' + this.state.lastname + ' ' + this.state.address + ' ' + this.state.username + ' ' + this.state.password + ' ' + this.state.ezmail);
 	//pushMarker();
       }
       pushMarker(){
@@ -75,7 +75,7 @@ class Signup extends React.Component {
 		address: this.state.address,
 		username: this.state.username,
 		password: this.state.password,
-		email: this.state.email
+		email: this.state.ezmail
 	};
         $.ajax({
 	  type: "post",
@@ -98,8 +98,8 @@ class Signup extends React.Component {
                         <input type="text" id="address" placeholder="Delivery Address" value={this.state.address} onChange={this.handleAddressChange} />
                         <input type="text" id="username" placeholder="Username" value={this.state.username} onChange={this.handleUsernameChange} />
                         <input type="password" id="password" placeholder="Password" value={this.state.password} onChange={this.handlePasswordChange} />
-                        <input type="password" id="confirm" placeholder="Confirm Password" value={this.state.confirmpassword} onChange={this.handlePasswordConfirmChange} />
-                        <input type="text" id="email" placeholder="Email" value={this.state.email} onChange={this.state.handleEmailChange} />
+                        <input type="password" id="confirm" placeholder="Confirm Password" value={this.state.passwordconfirm} onChange={this.handlePasswordConfirmChange} />
+                        <input type="text" id="ezmail" placeholder="E-mail" value={this.state.ezmail} onChange={this.handleEzmailChange} />
                     <button id="send" onClick={this.handleClick} >Send</button>
             </div>
                 </div>
