@@ -1,25 +1,25 @@
- % 1. Title: Foods Database
-   % 
-   % 2. Sources:
-   %      (a) Creator: @marciosmelo
-   %      (b) Date: November, 2017
-   % 
-   @RELATION foods
+% 1. Title: Foods Database
+% 
+% 2. Sources:
+%      (a) Creator: @marciosmelo
+%      (b) Date: November, 2017
+% 
+@RELATION foods
 
 @relation foods
 
 @attribute name string
 @attribute type string
-@attribute day string
+@attribute class {Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday}
 
 @data
-pizza,pasta,friday
-pizza,pasta,saturday
-beef,meat,friday
-chicken,meat,monday
-brocoli,vegetable,monday
-salad,vegetable,monday
-spaghetti,pasta,sunday
-spaghetti,pasta,wednesday
-spaghetti,pasta,sunday
-meatballs,meat,thursday
+pizza,pasta,Friday
+pizza,pasta,Saturday
+beef,meat,Friday
+chicken,meat,Monday
+brocoli,vegetable,Monday
+salad,vegetable,Monday
+spaghetti,pasta,Sunday
+spaghetti,pasta,Wednesday
+spaghetti,pasta,Sunday
+meatballs,meat,Thursday
