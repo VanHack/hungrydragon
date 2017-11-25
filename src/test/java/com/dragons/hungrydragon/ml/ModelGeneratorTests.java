@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.dragons.hungrydragon.precog;
+package com.dragons.hungrydragon.ml;
 
+import com.dragons.hungrydragon.ml.ModelGenerator;
 import java.io.File;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -29,7 +30,7 @@ public class ModelGeneratorTests extends ModelGenerator {
     @Test
     public void loadDatasetWithValidPath() {
         ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource("food.arff").getFile());
+        File file = new File(classLoader.getResource("ml/food.arff").getFile());
         assertNotNull(file.getAbsolutePath());
     }
 }
