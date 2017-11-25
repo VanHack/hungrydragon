@@ -130,10 +130,31 @@ function showPositionError(error) {
 
       function callback(results, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
+	  var placeList = [];
           for (var i = 0; i < results.length; i++) {
             createMarker(results[i]);
+            passMarker(results[i]);
+	    var placeDatum = {
+	      address: place.formatted_address,
+	      latitude: place.geometry.location.latitude,
+	      longitude: place.geometry.location.longitude,
+	      restaurantName: place.name
+	    };
+	    placeList.push(placeDatum);
           }
+	  //pushMarker(placeList);
         }
+      }
+
+      function pushMarker(placeList) {
+        $.ajax({
+	  type: "POST",
+	  url: "/TODO",
+	  dataType: "json",
+	  success: function(datum) {
+	  },
+	  data: placeList
+	});
       }
 
       function createMarker(place) {
