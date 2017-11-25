@@ -17,8 +17,44 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
 
 <script type="text/babel">
-var Login = React.createClass({
-      render:function(){
+class Login extends React.Component {
+      constructor(props){
+	super(props);
+	this.state = {
+	  username: '',
+	  password: ''
+	};
+        this.handleUsernameChange = this.handleUsernameChange.bind(this);
+        this.handlePasswordChange = this.handlePasswordChange.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+      }
+      handleUsernameChange(e){
+        this.setState({username: e.target.value});
+      }
+      handlePasswordChange(e){
+        this.setState({password: e.target.value});
+      }
+      handleClick(){
+        alert(this.state.username + ' ' + this.state.password);
+	var newLogin = {
+		username: this.state.username,
+		password: this.state.password
+	};
+	//pushMarker();
+      }
+      pushMarker(){
+        $.ajax({
+	  type: "post",
+	  url: "/TODO",
+	  dataType: "json",
+	  contentType: "application/json; charset=utf-8",
+	  traditional: true,
+	  success: function(datum) {
+	  },
+	  data: JSON.stringify(newLogin)
+	});
+      }
+      render(){
         
         
         
@@ -27,16 +63,16 @@ var Login = React.createClass({
                   <div>
                               
                  <div id="login">
-                    <input type="email" id="email" placeholder="Email"/>
-                    <input type="password" id="password" placeholder="Password"/>
-                    <button id="send">Send</button>
+                    <input type="text" id="username" placeholder="Username" value={this.state.username} onChange={this.handleUsernameChange} />
+                    <input type="password" id="password" placeholder="Password" value={this.state.password} onChange={this.handlePasswordChange} />
+                    <button id="send" onClick={this.handleClick} >Send</button>
             </div>
                 
                   </div>
               
             )
       }
-});
+};
 
 
 ReactDOM.render(<Login/>,document.getElementById("space"));

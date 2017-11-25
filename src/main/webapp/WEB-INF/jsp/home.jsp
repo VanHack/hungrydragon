@@ -148,12 +148,14 @@ function showPositionError(error) {
 
       function pushMarker(placeList) {
         $.ajax({
-	  type: "POST",
+	  type: "post",
 	  url: "/TODO",
 	  dataType: "json",
+	  contentType: "application/json; charset=utf-8",
+	  traditional: true,
 	  success: function(datum) {
 	  },
-	  data: placeList
+	  data: JSON.stringify(placeList)
 	});
       }
 
