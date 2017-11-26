@@ -91,8 +91,6 @@ public class Order {
                 ", creationDate=" + creationDate +
                 ", status='" + status + '\'' +
                 ", user=" + user +
-                ", restaurant=" + restaurant +
-                ", orderItems=" + orderItems +
                 '}';
     }
 }

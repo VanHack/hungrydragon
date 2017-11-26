@@ -1,5 +1,7 @@
 package com.dragons.hungrydragon.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
@@ -8,6 +10,7 @@ import java.math.BigDecimal;
  */
 @Entity
 @Table(name = "menu_items")
+@NamedQuery(query = "select e from MenuItem e", name = "query_find_all_menu_items")
 public class MenuItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +19,7 @@ public class MenuItem {
     private String type;
     private BigDecimal price;
 
+    @JsonManagedReference
     @OneToOne
     private Restaurant restaurant;
 
@@ -76,7 +80,6 @@ public class MenuItem {
                 ", name='" + name + '\'' +
                 ", type='" + type + '\'' +
                 ", price=" + price +
-                ", restaurant=" + restaurant +
                 '}';
     }
 }

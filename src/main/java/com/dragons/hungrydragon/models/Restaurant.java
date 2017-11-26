@@ -1,5 +1,7 @@
 package com.dragons.hungrydragon.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,6 +22,7 @@ public class Restaurant {
     private String latitude;
     private String longitude;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "restaurant")
     private Set<MenuItem> menuItems = new HashSet<>();
 
@@ -89,7 +92,6 @@ public class Restaurant {
                 ", address='" + address + '\'' +
                 ", latitude='" + latitude + '\'' +
                 ", longitude='" + longitude + '\'' +
-                ", menuItems=" + menuItems +
                 '}';
     }
 }
