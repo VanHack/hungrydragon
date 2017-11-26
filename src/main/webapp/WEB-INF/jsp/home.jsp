@@ -255,14 +255,22 @@ alert(JSON.stringify([xhr, status, error]));
 
 <script>
 
-	  function doMenuList (menulist) {
+	  function doMenuList(menulist) {
+	    var imgList = [
+			    "https://b.zmtcdn.com/data/reviews_photos/f27/2cdc7e0c88fe2aa4f49f649737455f27.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A",
+			    "https://b.zmtcdn.com/data/reviews_photos/468/a0a814d7a4ada12764987ce450fd8468.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A",
+			    "https://b.zmtcdn.com/data/reviews_photos/2af/281654faa69cf513cfe45d5aea7b52af.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A",
+			    "https://b.zmtcdn.com/data/reviews_photos/1a4/536aaf11a602883e505e49676b9cb1a4.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A",
+			    "https://b.zmtcdn.com/data/reviews_photos/0c9/8bafd1b95c54c07993f523f07b6f20c9.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A"
+	    ];
 	    $.each(menulist, function(i, menuitem)
 	    {
 	      document.getElementById('menulist').innerHTML =
 	        document.getElementById('menulist').innerHTML +
                     '<div class="col-sm-4 col-lg-4 col-md-4">' +
                         '<div class="thumbnail">' +
-                            '<img src="https://b.zmtcdn.com/data/reviews_photos/f27/2cdc7e0c88fe2aa4f49f649737455f27.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A" alt="' + menuitem.name + '">' +
+                            '<img src="' + imgList[(Math.floor(Math.random() * 10 * imgList.length) % imgList.length)]
+			    + '" alt="' + menuitem.name + '">' +
                             '<div class="caption">' +
                                 '<h4><a href="#">' + menuitem.name + '</a>' +
                                 '<h4>$' + menuitem.price + '</h4>' +
@@ -304,7 +312,16 @@ alert(JSON.stringify([xhr, status, error]));
 		resta.name + '">' +
                                 '</div>';
 	      if (isFirst)
-	        doMenuList(resta.menuitems);
+	      {
+	        if (resta.hasOwnProperty("menuItems"))
+		{
+	          doMenuList(resta.menuItems);
+		}
+		else
+		{
+		 // TODO ERROR
+		}
+	      }
 	      isFirst = false;
 	    });
 	  }
