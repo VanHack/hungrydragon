@@ -170,9 +170,10 @@ function showPositionError(error) {
 	  traditional: true,
 	  success: function(datum) {
 	    //doSuggest(datum, 'suggestedmenulist');
+	    doMenuList(datum, 'suggestedmenulist');
 	  },
 	  error: function(xhr, status, error) {
-	   doSnackbar(error);
+	   doSnackbar('Got error! ' + error);
 //alert(JSON.stringify([xhr, status, error]));
 	  }
 	});
@@ -198,9 +199,10 @@ function showPositionError(error) {
 	  traditional: true,
 	  success: function(datum) {
 	    //doSuggest(datum, 'suggestedmenulist');
+	    doMenuList(datum, 'suggestedmenulist');
 	  },
 	  error: function(xhr, status, error) {
-	    doSnackbar(error);
+	   doSnackbar('Got error! ' + error);
 //alert(JSON.stringify([xhr, status, error]));
 	  }
 	});
@@ -260,7 +262,7 @@ function showPositionError(error) {
 		return;
 	      }
 	    }
-	    doSnackbar(error);
+	   doSnackbar('Got error! ' + error);
 //alert(JSON.stringify([xhr, status, error]));
 	  },
 	  data: placeList
@@ -405,6 +407,7 @@ function showPositionError(error) {
 	    });
 	  }
 
+/*
 	  function doSuggest (suggested, menulist) {
 	    var isFirst = true;
 	    $.each(suggested, function(i, menuitem)
@@ -444,6 +447,7 @@ alert('i-end:' + i);
 	      isFirst = false;
 	    });
 	  }
+*/
 
 	  function doDatum (datum) {
 	    if (!datum.hasOwnProperty("_embedded"))
@@ -498,7 +502,7 @@ alert('i-end:' + i);
 	    doDatum(datum);
 	  },
 	  error: function(xhr, status, error) {
-	    doSnackbar(error);
+	   doSnackbar('Got error! ' + error);
 //alert(JSON.stringify([xhr, status, error]));
 	  }
 	});
