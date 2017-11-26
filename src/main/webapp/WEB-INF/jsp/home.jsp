@@ -184,6 +184,12 @@ alert(JSON.stringify([xhr, status, error]));
       }
  </script>
 
+        <div>
+	  <h2 class="text-secondary text-center">Recommended For You</h2>
+          <div id="suggestedmenulist" class="row">
+          </div>
+        </div>
+
         <div class="row">
 
             <div class="col-md-3">
@@ -255,7 +261,7 @@ alert(JSON.stringify([xhr, status, error]));
 
 <script>
 
-	  function doMenuList(menulist) {
+	  function doMenuList(menulist, elem) {
 	    var imgList = [
 			    "https://b.zmtcdn.com/data/reviews_photos/f27/2cdc7e0c88fe2aa4f49f649737455f27.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A",
 			    "https://b.zmtcdn.com/data/reviews_photos/468/a0a814d7a4ada12764987ce450fd8468.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A",
@@ -265,8 +271,8 @@ alert(JSON.stringify([xhr, status, error]));
 	    ];
 	    $.each(menulist, function(i, menuitem)
 	    {
-	      document.getElementById('menulist').innerHTML =
-	        document.getElementById('menulist').innerHTML +
+	      document.getElementById(elem).innerHTML =
+	        document.getElementById(elem).innerHTML +
                     '<div class="col-sm-4 col-lg-4 col-md-4">' +
                         '<div class="thumbnail">' +
                             '<img src="' + imgList[(Math.floor(Math.random() * 10 * imgList.length) % imgList.length)]
@@ -315,7 +321,8 @@ alert(JSON.stringify([xhr, status, error]));
 	      {
 	        if (resta.hasOwnProperty("menuItems"))
 		{
-	          doMenuList(resta.menuItems);
+	          doMenuList(resta.menuItems, 'menulist');
+	          doMenuList(resta.menuItems, 'suggestedmenulist');
 		}
 		else
 		{
@@ -333,6 +340,20 @@ alert(JSON.stringify([xhr, status, error]));
 	  traditional: true,
 	  success: function(datum) {
 	    doDatum(datum);
+	  },
+	  error: function(xhr, status, error) {
+alert(JSON.stringify([xhr, status, error]));
+	  }
+	});
+
+        $.ajax({
+	  type: "get",
+	  url: "/suggest/food",
+	  dataType: "json",
+	  contentType: "application/json; charset=utf-8",
+	  traditional: true,
+	  success: function(datum) {
+	    doMenuList(datum, 'suggestedmenulist');
 	  },
 	  error: function(xhr, status, error) {
 alert(JSON.stringify([xhr, status, error]));
