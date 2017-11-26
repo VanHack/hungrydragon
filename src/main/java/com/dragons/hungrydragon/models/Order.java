@@ -2,7 +2,9 @@ package com.dragons.hungrydragon.models;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Fahad Ahmed
@@ -23,12 +25,8 @@ public class Order {
     @OneToOne
     private Restaurant restaurant;
 
-    //@OneToMany(mappedBy = "id")
-    //private List<MenuItem> menuItems;
-
-    //@OneToOne
-    //private OrderStatus status;
-
+    @OneToMany(mappedBy = "order")
+    private Set<OrderItem> orderItems = new HashSet<>();
 
     public Order() {
     }
@@ -78,12 +76,23 @@ public class Order {
         this.restaurant = restaurant;
     }
 
-    /*public List<MenuItem> getMenuItems() {
-        return menuItems;
+    public Set<OrderItem> getOrderItems() {
+        return orderItems;
     }
 
-    public void setMenuItems(List<MenuItem> menuItems) {
-        this.menuItems = menuItems;
-    }*/
+    public void setOrderItems(Set<OrderItem> orderItems) {
+        this.orderItems = orderItems;
+    }
 
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", creationDate=" + creationDate +
+                ", status='" + status + '\'' +
+                ", user=" + user +
+                ", restaurant=" + restaurant +
+                ", orderItems=" + orderItems +
+                '}';
+    }
 }

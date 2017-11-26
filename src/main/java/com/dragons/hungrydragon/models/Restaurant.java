@@ -1,6 +1,8 @@
 package com.dragons.hungrydragon.models;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Fahad Ahmed
@@ -17,6 +19,9 @@ public class Restaurant {
     private String address;
     private String latitude;
     private String longitude;
+
+    @OneToMany(mappedBy = "restaurant")
+    private Set<MenuItem> menuItems = new HashSet<>();
 
     public Restaurant() {
     }
@@ -68,6 +73,14 @@ public class Restaurant {
         this.longitude = longitude;
     }
 
+    public Set<MenuItem> getMenuItems() {
+        return menuItems;
+    }
+
+    public void setMenuItems(Set<MenuItem> menuItems) {
+        this.menuItems = menuItems;
+    }
+
     @Override
     public String toString() {
         return "Restaurant{" +
@@ -76,6 +89,7 @@ public class Restaurant {
                 ", address='" + address + '\'' +
                 ", latitude='" + latitude + '\'' +
                 ", longitude='" + longitude + '\'' +
+                ", menuItems=" + menuItems +
                 '}';
     }
 }
