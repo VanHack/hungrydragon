@@ -61,15 +61,15 @@ INSERT INTO orders (id, creation_date, status, user_id, restaurant_id) VALUES(3,
 -- Order items
 --
 
-INSERT INTO orders_menu_items (id, quantity, order_id, menu_item_id) VALUES(1,2,1,1);
-INSERT INTO orders_menu_items (id, quantity, order_id, menu_item_id) VALUES(2,2,1,3);
+INSERT INTO order_items (id, quantity, order_id, menu_item_id) VALUES(1,2,1,1);
+INSERT INTO order_items (id, quantity, order_id, menu_item_id) VALUES(2,2,1,3);
 
-INSERT INTO orders_menu_items (id, quantity, order_id, menu_item_id) VALUES(3,3,3,9);
-INSERT INTO orders_menu_items (id, quantity, order_id, menu_item_id) VALUES(4,2,3,10);
-INSERT INTO orders_menu_items (id, quantity, order_id, menu_item_id) VALUES(5,1,3,11);
-INSERT INTO orders_menu_items (id, quantity, order_id, menu_item_id) VALUES(6,3,3,13);
+INSERT INTO order_items (id, quantity, order_id, menu_item_id) VALUES(3,3,3,9);
+INSERT INTO order_items (id, quantity, order_id, menu_item_id) VALUES(4,2,3,10);
+INSERT INTO order_items (id, quantity, order_id, menu_item_id) VALUES(5,1,3,11);
+INSERT INTO order_items (id, quantity, order_id, menu_item_id) VALUES(6,3,3,13);
 
-INSERT INTO orders_menu_items (id, quantity, order_id, menu_item_id) VALUES(7,3,3,14);
-INSERT INTO orders_menu_items (id, quantity, order_id, menu_item_id) VALUES(8,2,3,15);
-INSERT INTO orders_menu_items (id, quantity, order_id, menu_item_id) VALUES(9,1,3,16);
-INSERT INTO orders_menu_items (id, quantity, order_id, menu_item_id) VALUES(10,3,3,18);
+INSERT INTO order_items (id, quantity, order_id, menu_item_id) VALUES(7,3,3,14);
+INSERT INTO order_items (id, quantity, order_id, menu_item_id) VALUES(8,2,3,15);
+INSERT INTO order_items (id, quantity, order_id, menu_item_id) VALUES(9,1,3,16);
+INSERT INTO order_items (id, quantity, order_id, menu_item_id) VALUES(10,3,3,18);

@@ -35,8 +35,8 @@ CREATE TABLE orders(
     FOREIGN KEY(user_id) REFERENCES users(id),
     FOREIGN KEY(restaurant_id) REFERENCES restaurants(id));
 
-DROP TABLE IF EXISTS orders_menu_items;
-CREATE TABLE orders_menu_items(
+DROP TABLE IF EXISTS order_items;
+CREATE TABLE order_items(
     id INT PRIMARY KEY AUTO_INCREMENT,
     quantity INT DEFAULT 1,
     order_id INT,
