@@ -1,5 +1,5 @@
 DROP TABLE IF EXISTS users;
-CREATE TABLE IF NOT EXISTS users(
+CREATE TABLE users(
     id INT PRIMARY KEY AUTO_INCREMENT,
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS users(
     address VARCHAR(255) NOT NULL);
 
 DROP TABLE IF EXISTS restaurants;
-CREATE TABLE IF NOT EXISTS restaurants(
+CREATE TABLE restaurants(
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
     address VARCHAR(255) NOT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS restaurants(
     longitude VARCHAR(255));
 
 DROP TABLE IF EXISTS menu_items;
-CREATE TABLE IF NOT EXISTS menu_items(
+CREATE TABLE menu_items(
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
     type VARCHAR(255) NOT NULL,
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS menu_items(
     FOREIGN KEY(restaurant_id) REFERENCES restaurants(id));
 
 DROP TABLE IF EXISTS orders;
-CREATE TABLE IF NOT EXISTS orders(
+CREATE TABLE orders(
     id INT PRIMARY KEY AUTO_INCREMENT,
     creation_date TIMESTAMP NOT NULL,
     status VARCHAR(255) NOT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS orders(
     FOREIGN KEY(restaurant_id) REFERENCES restaurants(id));
 
 DROP TABLE IF EXISTS orders_menu_items;
-CREATE TABLE IF NOT EXISTS orders_menu_items(
+CREATE TABLE orders_menu_items(
     id INT PRIMARY KEY AUTO_INCREMENT,
     quantity INT DEFAULT 1,
     order_id INT,
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS orders_menu_items(
     FOREIGN KEY(menu_item_id) REFERENCES menu_items(id));
 
 DROP TABLE IF EXISTS food_by_week;
-CREATE TABLE IF NOT EXISTS food_by_week(
+CREATE TABLE food_by_week(
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
     type VARCHAR(255) NOT NULL,
