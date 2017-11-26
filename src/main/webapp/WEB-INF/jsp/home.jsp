@@ -102,8 +102,6 @@ function showPositionError(error) {
       function initMap() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(MapUserLocation, showPositionError);
-       // var pyrmont = {lat: -33.867, lng: 151.195};
-       // doMap(pyrmont);
     } else {
         document.getElementById("map").innerHTML = "Geolocation is not supported by this browser.";
     }
@@ -114,7 +112,6 @@ function showPositionError(error) {
       }
       function doMap(pyrmont) {
         map = new google.maps.Map(document.getElementById('map'), {
-//        map = new google.maps.Map($("#map"), {
           center: pyrmont,
           zoom: 15
         });
@@ -135,44 +132,13 @@ function showPositionError(error) {
             createMarker(results[i]);
 	    var place = results[i];
             var placeLoc = place.geometry.location;
-//alert(JSON.stringify(place));
-//alert(JSON.stringify(placeLoc));
-//alert(JSON.stringify(placeLoc.lat));
-//alert(JSON.stringify(placeLoc.lng));
 	    var placeDatum = {
 	      address: place.vicinity,
-// why doesn't this work ?!
-	      //latitude = placeLoc.lat;
-	      //longitude = placeLoc.lng;
-	      latitude: 0,
-	      longitude: 0,
-	      location: placeLoc,
+	      latitude: placeLoc.lat(),
+	      longitude: placeLoc.lng(),
 	      restaurantName: place.name
 	    };
-// why doesn't this work ?!
-	    //placeDatum.latitude = placeLoc["lat"];
-	    //placeDatum.longitude = placeLoc["lng"];
-	    // use 'string math' to put latitude/longitude information in right spot
-	    var locationString = JSON.stringify(placeLoc);
-	    locationString = locationString.substring(7, locationString.length - 8);
-	    var splitString = locationString.split(',');
-	    placeDatum.latitude = splitString[0];
-	    locationString = splitString[1];
-	    locationString = locationString.substr(6);
-	    placeDatum.longitude = locationString;
-	    /* even this doesn't work!
-	    var propKeys = Object.keys(placeLoc);
-alert(JSON.stringify(propKeys));
-	    for (var i = 0; i < propKeys.length; i+=1)
-	    {
-	      if (i == 0) {
-	      	placeDatum.latitude = placeLoc[propKeys[i]];
-	      } else {
-	      	placeDatum.longitude = placeLoc[propKeys[i]];
-	      }
-	    }
-	    */
-//alert(JSON.stringify(placeDatum));
+alert(JSON.stringify(placeDatum));
 	    placeList.push(placeDatum);
           }
 	  pushMarker(placeList);
@@ -251,118 +217,7 @@ alert(JSON.stringify([xhr, status, error]));
 
                 </div>
 
-                <div class="row">
-
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="https://b.zmtcdn.com/data/reviews_photos/f27/2cdc7e0c88fe2aa4f49f649737455f27.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A" alt="beef and broccoli">
-                            <div class="caption">
-                                <h4><a href="#">Beef and Broccoli</a>
-                                <h4>$24.99</h4>
-                                </h4>
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">15 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="https://b.zmtcdn.com/data/reviews_photos/468/a0a814d7a4ada12764987ce450fd8468.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A" alt="sweet and sour veal">
-                            <div class="caption">
-                                <h4><a href="#">Sweet and Sour Veal</a>
-                                <h4>$64.99</h4>
-                                </h4>
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">12 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="https://b.zmtcdn.com/data/reviews_photos/2af/281654faa69cf513cfe45d5aea7b52af.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A" alt="chicken fried rice">
-                            <div class="caption">
-                                <h4><a href="#">Chicken Fried Rice</a>
-                                <h4>$74.99</h4>
-                                </h4>
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">31 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="https://b.zmtcdn.com/data/reviews_photos/1a4/536aaf11a602883e505e49676b9cb1a4.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A" alt="Hot Honey Chicken">
-                            <div class="caption">
-                                <h4><a href="#">Hot Honey Chicken</a>
-                                <h4>$84.99</h4>
-                                </h4>
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">6 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="https://b.zmtcdn.com/data/reviews_photos/0c9/8bafd1b95c54c07993f523f07b6f20c9.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A" alt="cantonese chow mein">
-                            <div class="caption">
-                                <h4><a href="#">Cantonese Chow Mein</a>
-                                <h4>$94.99</h4>
-                                </h4>
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">18 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
+                <div id="menulist" class="row">
                 </div>
 
             </div>
@@ -399,6 +254,26 @@ alert(JSON.stringify([xhr, status, error]));
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDy00HmmAp62qnc_Xlr3O6S5yrlyyDoUCw&libraries=places&callback=initMap" async defer></script>
 
 <script>
+
+	  function doMenuList (menulist) {
+	    $.each(menulist, function(i, menuitem)
+	    {
+	      document.getElementById('menulist').innerHTML =
+	        document.getElementById('menulist').innerHTML +
+                    '<div class="col-sm-4 col-lg-4 col-md-4">' +
+                        '<div class="thumbnail">' +
+                            '<img src="https://b.zmtcdn.com/data/reviews_photos/f27/2cdc7e0c88fe2aa4f49f649737455f27.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A" alt="' + menuitem.name + '">' +
+                            '<div class="caption">' +
+                                '<h4><a href="#">' + menuitem.name + '</a>' +
+                                '<h4>$' + menuitem.price + '</h4>' +
+                                '</h4>' +
+                                '<p>'+ menuitem.type + '</p>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>';
+	    });
+	  }
+
 	  function doDatum (datum) {
 	    if (!datum.hasOwnProperty("_embedded"))
 	    {
@@ -428,6 +303,8 @@ alert(JSON.stringify([xhr, status, error]));
 		'<img class="slide-image" src="https://maps.zomato.com/osm/14/3764/5564.png" alt="' +
 		resta.name + '">' +
                                 '</div>';
+	      if (isFirst)
+	        doMenuList(resta.menuitems);
 	      isFirst = false;
 	    });
 	  }
