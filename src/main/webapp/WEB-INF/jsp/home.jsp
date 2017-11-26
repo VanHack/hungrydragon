@@ -152,6 +152,14 @@ function showPositionError(error) {
 // why doesn't this work ?!
 	    //placeDatum.latitude = placeLoc["lat"];
 	    //placeDatum.longitude = placeLoc["lng"];
+	    // use 'string math' to put latitude/longitude information in right spot
+	    var locationString = JSON.stringify(placeLoc);
+	    locationString = locationString.substring(7, locationString.length - 8);
+	    var splitString = locationString.split(',');
+	    placeDatum.latitude = splitString[0];
+	    locationString = splitString[1];
+	    locationString = locationString.substr(6);
+	    placeDatum.longitude = locationString;
 	    /* even this doesn't work!
 	    var propKeys = Object.keys(placeLoc);
 alert(JSON.stringify(propKeys));
