@@ -64,7 +64,7 @@
     </nav>
 
     <div class="well fluid-image mx-auto d-block">
-       <div id="map"></div>
+       <div id="map" class="mx-auto d-block fluid-image"></div>
     </div>
     <!-- Page Content -->
     <div class="container">
@@ -73,8 +73,8 @@
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
-        height: 250px;
-        width: 250px;
+        height: 300px;
+        width: 600px;
       }
 </style>
 <!-- derived from https://www.w3schools.com/html/html5_geolocation.asp and https://developers.google.com/maps/documentation/javascript/examples/place-search  -->
