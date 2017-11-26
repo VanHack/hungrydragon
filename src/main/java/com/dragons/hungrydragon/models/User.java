@@ -1,5 +1,6 @@
 package com.dragons.hungrydragon.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -18,6 +19,8 @@ public class User {
     private String firstName;
     private String lastName;
     private String username;
+
+    @JsonIgnore
     private String password;
     private String email;
     private String address;
