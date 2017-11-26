@@ -63,7 +63,7 @@
         <!-- /.container -->
     </nav>
 
-    <div class="well fluid-image mx-auto d-block">
+    <div class="well fluid-image mx-auto d-block" align="center">
        <div id="map" class="mx-auto d-block fluid-image"></div>
     </div>
     <!-- Page Content -->
