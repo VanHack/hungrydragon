@@ -22,6 +22,26 @@ public class FoodSuggestionRepository {
         return entityManager.find(FoodSuggestion.class, id);
     }
 
+    public List<FoodSuggestion> find(int dayOfWeek) {
+        return entityManager.createQuery("from FoodSuggestion as e where e.dayOfWeek = :dayOfWeek")
+            .setParameter("dayOfWeek", dayOfWeek).getResultList();
+    }
+
+    public List<FoodSuggestion> find(int dayOfWeek, float weight) {
+        return entityManager.createQuery("from FoodSuggestion as e where e.dayOfWeek = :dayOfWeek and e.weight >= :weight")
+            .setParameter("dayOfWeek", dayOfWeek).setParameter("weight", weight).getResultList();
+    }
+
+    public List<String> findTypes(int dayOfWeek) {
+        return entityManager.createQuery("select distinct e.type from FoodSuggestion as e where e.dayOfWeek = :dayOfWeek")
+            .setParameter("dayOfWeek", dayOfWeek).getResultList();
+    }
+
+    public List<String> findTypes(int dayOfWeek, float weight) {
+        return entityManager.createQuery("select distinct e.type from FoodSuggestion as e where e.dayOfWeek = :dayOfWeek and e.weight >= :weight")
+            .setParameter("dayOfWeek", dayOfWeek).setParameter("weight", weight).getResultList();
+    }
+
     public List<FoodSuggestion> findAll() {
         Query query =
             entityManager.createNamedQuery("query_find_all_food_suggestions", FoodSuggestion.class);
@@ -29,8 +49,8 @@ public class FoodSuggestionRepository {
         return query.getResultList();
     }
 
-    public long insert(FoodSuggestion user) {
-        entityManager.persist(user);
-        return user.getId();
+    public long insert(FoodSuggestion foodSuggestion) {
+        entityManager.persist(foodSuggestion);
+        return foodSuggestion.getId();
     }
 }
