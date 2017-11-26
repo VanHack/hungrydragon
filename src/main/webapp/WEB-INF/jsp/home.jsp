@@ -63,7 +63,7 @@
         <!-- /.container -->
     </nav>
 
-    <div class="well fluid-image mx-auto d-block">
+    <div class="well fluid-image mx-auto d-block" align="center">
        <div id="map" class="mx-auto d-block fluid-image"></div>
     </div>
     <!-- Page Content -->
@@ -159,7 +159,7 @@ function showPositionError(error) {
 // if we don't have location data, just populate the suggestion menu based on the day of the week.
         $.ajax({
 	  type: "get",
-	  url: "/suggest/food",
+	  url: "/suggest",
 	  data: {
 	    dayOfWeek: dayList[new Date().getDay()],
 	    latitude: 0,
@@ -187,7 +187,7 @@ function showPositionError(error) {
       function MapUserLocation(position) {
         $.ajax({
 	  type: "get",
-	  url: "/suggest/food",
+	  url: "/suggest",
 	  data: {
 	    dayOfWeek: dayList[new Date().getDay()],
 	    latitude: position.coords.latitude,
