@@ -180,15 +180,12 @@ alert(JSON.stringify(propKeys));
       }
 
       function pushMarker(placeList) {
-	var newPlaceList = {
-	  datalist: JSON.stringify(placeList)
-	};
         $.ajax({
 	  type: "post",
 	  url: "/register/postrestaurantlist",
 	  dataType: "json",
-	  //contentType: "application/json; charset=utf-8",
-	  contentType: "application/x-www-form-urlencoded",
+	  contentType: "application/json; charset=utf-8",
+	  //contentType: "application/x-www-form-urlencoded",
 	  traditional: true,
 	  success: function(datum) {
 	  },
@@ -203,8 +200,7 @@ alert(JSON.stringify(propKeys));
 	    }
 alert(JSON.stringify([xhr, status, error]));
 	  },
-	  //data: JSON.stringify(placeList)
-	  data: newPlaceList
+	  data: placeList
 	});
       }
 
