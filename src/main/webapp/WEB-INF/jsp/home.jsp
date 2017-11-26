@@ -76,7 +76,53 @@
         height: 300px;
         width: 600px;
       }
-</style>
+
+ /* The snackbar - position it at the bottom and in the middle of the screen */
+#snackbar {
+    visibility: hidden; /* Hidden by default. Visible on click */
+    min-width: 250px; /* Set a default minimum width */
+    margin-left: -125px; /* Divide value of min-width by 2 */
+    background-color: #333; /* Black background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Centered text */
+    border-radius: 2px; /* Rounded borders */
+    padding: 16px; /* Padding */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 1; /* Add a z-index if needed */
+    left: 50%; /* Center the snackbar */
+    bottom: 30px; /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+    visibility: visible; /* Show the snackbar */
+
+/* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+} </style>
 <!-- derived from https://www.w3schools.com/html/html5_geolocation.asp and https://developers.google.com/maps/documentation/javascript/examples/place-search  -->
  <script>
 	var dayList = [
@@ -123,10 +169,11 @@ function showPositionError(error) {
 	  contentType: "application/json; charset=utf-8",
 	  traditional: true,
 	  success: function(datum) {
-	    doSuggest(datum, 'suggestedmenulist');
+	    //doSuggest(datum, 'suggestedmenulist');
 	  },
 	  error: function(xhr, status, error) {
-alert(JSON.stringify([xhr, status, error]));
+	   doSnackbar(error);
+//alert(JSON.stringify([xhr, status, error]));
 	  }
 	});
 } 
@@ -150,10 +197,11 @@ alert(JSON.stringify([xhr, status, error]));
 	  contentType: "application/json; charset=utf-8",
 	  traditional: true,
 	  success: function(datum) {
-	    doSuggest(datum, 'suggestedmenulist');
+	    //doSuggest(datum, 'suggestedmenulist');
 	  },
 	  error: function(xhr, status, error) {
-alert(JSON.stringify([xhr, status, error]));
+	    doSnackbar(error);
+//alert(JSON.stringify([xhr, status, error]));
 	  }
 	});
         var pyrmont = {lat: position.coords.latitude, lng: position.coords.longitude};
@@ -212,7 +260,8 @@ alert(JSON.stringify([xhr, status, error]));
 		return;
 	      }
 	    }
-alert(JSON.stringify([xhr, status, error]));
+	    doSnackbar(error);
+//alert(JSON.stringify([xhr, status, error]));
 	  },
 	  data: placeList
 	});
@@ -297,6 +346,7 @@ alert(JSON.stringify([xhr, status, error]));
 
         </div>
 
+<div id="snackbar">Some text some message..</div>
     </div>
     <!-- /.container -->
 
@@ -363,13 +413,34 @@ alert(JSON.stringify([xhr, status, error]));
 	        document.getElementById(menulist).innerHTML +
 		(isFirst ? '<div class="item active">' :
 		'<div class="item">') +
-		'<h1 class="text-primary text-center">' +
-		menuitem.name
+		'<ul class="thumbnails span6 row">' ;
+		var thumbNum = 3;
+alert('i:' + i);
+		for (var j = i; j < i+thumbNum; j = j + 1)
+		{
+		  var n = j;
+		  if (n >= suggested.length)
+		  {
+		    // wrap-around
+		    n = n - suggested.length;
+		  }
+alert('n:' + n);
+		  var menuitm = suggested[n];
+	      document.getElementById(menulist).innerHTML =
+	        document.getElementById(menulist).innerHTML +
+		'<li class="col col-xs-6">' +
+		'<h1 class="caption text-primary text-center">' +
+		menuitm.name
 		+ '</h1>' +
-		'<img class="slide-image mx-auto d-block" src="' +
+		'<img class="thumbnail slide-image" src="' +
 		imgList[(Math.floor(Math.random() * 10 * imgList.length) % imgList.length)]
-		+ '" alt="' + menuitem.name + '">' +
-                                '</div>';
+		+ '" alt="' + menuitm.name + '">' +
+		'</li>';
+		}
+alert('i-end:' + i);
+	      document.getElementById(menulist).innerHTML =
+	        document.getElementById(menulist).innerHTML +
+                                '</ul></div>';
 	      isFirst = false;
 	    });
 	  }
@@ -408,7 +479,6 @@ alert(JSON.stringify([xhr, status, error]));
 	        if (resta.hasOwnProperty("menuItems"))
 		{
 	          doMenuList(resta.menuItems, 'menulist');
-	          doSuggest(resta.menuItems, 'suggestedmenulist');
 		}
 		else
 		{
@@ -428,10 +498,21 @@ alert(JSON.stringify([xhr, status, error]));
 	    doDatum(datum);
 	  },
 	  error: function(xhr, status, error) {
-alert(JSON.stringify([xhr, status, error]));
+	    doSnackbar(error);
+//alert(JSON.stringify([xhr, status, error]));
 	  }
 	});
-</script>
+function doSnackbar(msg) {
+    // Get the snackbar DIV
+    var x = document.getElementById("snackbar")
+x.innerHTML = msg;
+
+    // Add the "show" class to DIV
+    x.className = "show";
+
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+} </script>
 </body>
 
 </html>
