@@ -44,9 +44,9 @@ CREATE TABLE order_items(
     FOREIGN KEY(order_id) REFERENCES orders(id),
     FOREIGN KEY(menu_item_id) REFERENCES menu_items(id));
 
-DROP TABLE IF EXISTS food_by_week;
-CREATE TABLE food_by_week(
+DROP TABLE IF EXISTS food_suggestions;
+CREATE TABLE food_suggestions(
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(255) NOT NULL,
     type VARCHAR(255) NOT NULL,
-    day_of_week VARCHAR (255) NOT NULL);
+    weight REAL NOT NULL DEFAULT 0,
+    day_of_week INT NOT NULL);
