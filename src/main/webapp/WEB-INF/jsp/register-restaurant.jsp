@@ -3,6 +3,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
+<head>
 <!-- template from https://codepen.io/AJALACOMFORT/pen/oLpPPR by Ajala Comfort -->
     <title>Hungry Dragon - Food Delivery Service User Signup</title>
 <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700" rel="stylesheet"> 
@@ -46,9 +47,6 @@ class RestaurantAdd extends React.Component {
       }
       handleClick(){
         alert(this.state.name + ' ' + this.state.address + ' ' + this.state.latitude + ' ' + this.state.longitude);
-	//pushMarker();
-      }
-      pushMarker(){
 	var newRestaurant = {
 		name: this.state.name,
 		address: this.state.address,
@@ -57,13 +55,27 @@ class RestaurantAdd extends React.Component {
 	};
         $.ajax({
 	  type: "post",
-	  url: "/TODO",
+	  url: "/register/postrestaurant",
 	  dataType: "json",
-	  contentType: "application/json; charset=utf-8",
+	  //contentType: "application/json; charset=utf-8",
+	  contentType: "application/x-www-form-urlencoded",
 	  traditional: true,
 	  success: function(datum) {
+	    window.location='/';
 	  },
-	  data: JSON.stringify(newRestaurant)
+	  error: function(xhr, status, error) {
+	    if (xhr.hasOwnProperty("readyState"))
+	    {
+	      if (xhr.readyState == 4)
+	      {
+		// TODO FIXME solve the parseerror
+	        window.location='/';
+	      }
+	    }
+alert(JSON.stringify([xhr, status, error]));
+	  },
+	  //data: JSON.stringify(newRestaurant)
+	  data: newRestaurant
 	});
       }
       render(){

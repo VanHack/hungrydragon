@@ -3,6 +3,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
+<head>
 <!-- template from https://codepen.io/AJALACOMFORT/pen/oLpPPR by Ajala Comfort -->
     <title>Hungry Dragon - Food Delivery Service User Signup</title>
 <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700" rel="stylesheet"> 
@@ -66,9 +67,6 @@ class Signup extends React.Component {
 	  return;
 	}
         alert(this.state.firstname + ' ' + this.state.lastname + ' ' + this.state.address + ' ' + this.state.username + ' ' + this.state.password + ' ' + this.state.ezmail);
-	//pushMarker();
-      }
-      pushMarker(){
 	var newSignup = {
 		first_name: this.state.firstname,
 		last_name: this.state.lastname,
@@ -79,13 +77,27 @@ class Signup extends React.Component {
 	};
         $.ajax({
 	  type: "post",
-	  url: "/TODO",
+	  url: "/register/postuser",
 	  dataType: "json",
-	  contentType: "application/json; charset=utf-8",
+	  //contentType: "application/json; charset=utf-8",
+	  contentType: "application/x-www-form-urlencoded",
 	  traditional: true,
 	  success: function(datum) {
+	    window.location='/';
 	  },
-	  data: JSON.stringify(newSignup)
+	  error: function(xhr, status, error) {
+	    if (xhr.hasOwnProperty("readyState"))
+	    {
+	      if (xhr.readyState == 4)
+	      {
+		// TODO FIXME solve the parseerror
+	        window.location='/';
+	      }
+	    }
+alert(JSON.stringify([xhr, status, error]));
+	  },
+	  //data: JSON.stringify(newSignup)
+	  data: newSignup
 	});
       }
       render(){
