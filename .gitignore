@@ -25,3 +25,4 @@ nbdist/
 
 ### H2 ###
 *.db
+.mvn
