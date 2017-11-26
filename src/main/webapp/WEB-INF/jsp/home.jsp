@@ -310,7 +310,7 @@ function showPositionError(error) {
 
             <div class="col-md-3">
                 <!--<details open>-->
-                <summary><p class="lead">Select Restaurant</p></summary>
+                <!-- summary --><p class="lead">Select Restaurant</p><!-- /summary -->
                 <div id="restaurants" class="list-group">
                 </div>
                 <!--</details>-->
@@ -318,7 +318,7 @@ function showPositionError(error) {
 
             <div class="col-md-9">
 
-                <div class="row carousel-holder">
+                <!-- div class="row carousel-holder">
 
                     <div class="col-md-12">
                         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -338,7 +338,7 @@ function showPositionError(error) {
                         </div>
                     </div>
 
-                </div>
+                </div -->
 
                 <div id="menulist" class="row">
                 </div>
@@ -486,7 +486,7 @@ alert('i-end:' + i);
 	        '<a href="#" class="list-group-item">'
 	        + resta.name + '</a>';
 
-	      document.getElementById('restaurant-carousel').innerHTML =
+	      /*document.getElementById('restaurant-carousel').innerHTML =
 	        document.getElementById('restaurant-carousel').innerHTML +
 		(isFirst ? '<div class="item active">' :
 		'<div class="item">') +
@@ -495,7 +495,7 @@ alert('i-end:' + i);
 		+ '</h1>' +
 		'<img class="slide-image" src="https://maps.zomato.com/osm/14/3764/5564.png" alt="' +
 		resta.name + '">' +
-                                '</div>';
+                                '</div>';*/
 	      if (isFirst)
 	      {
 	        if (resta.hasOwnProperty("menuItems"))
