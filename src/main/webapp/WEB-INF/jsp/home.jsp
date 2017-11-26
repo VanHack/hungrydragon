@@ -226,10 +226,7 @@ alert(JSON.stringify([xhr, status, error]));
 
             <div class="col-md-3">
                 <details open><summary><p class="lead">Select Restaurant</p></a></summary>
-                <div id="restaraunts" class="list-group">
-                    <a href="#" class="list-group-item">Dragon Palace</a>
-                    <a href="#" class="list-group-item">Golden Dragon</a>
-                    <a href="#" class="list-group-item">Dragon Express</a>
+                <div id="restaurants" class="list-group">
                 </div>
                 </details>
             </div>
@@ -416,6 +413,41 @@ alert(JSON.stringify([xhr, status, error]));
 
     <!-- Google Places JavaScript API -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDy00HmmAp62qnc_Xlr3O6S5yrlyyDoUCw&libraries=places&callback=initMap" async defer></script>
+
+<script>
+	  function doDatum (datum) {
+	    if (!datum.hasOwnProperty("_embedded"))
+	    {
+	      // TODO signal error
+	      return;
+	    }
+	    if (!datum._embedded.hasOwnProperty("restaurants"))
+	    {
+	      // TODO signal error
+	      return;
+	    }
+	    $.each(datum._embedded.restaurants, function(i, resta)
+	    {
+	      document.getElementById('restaurants').innerHTML =
+	        document.getElementById('restaurants').innerHTML +
+	        '<a href="#" class="list-group-item">'
+	        + resta.name + '</a>';
+	    });
+	  }
+        $.ajax({
+	  type: "get",
+	  url: "/rest/restaurants",
+	  dataType: "json",
+	  contentType: "application/json; charset=utf-8",
+	  traditional: true,
+	  success: function(datum) {
+	    doDatum(datum);
+	  },
+	  error: function(xhr, status, error) {
+alert(JSON.stringify([xhr, status, error]));
+	  }
+	});
+</script>
 </body>
 
 </html>
