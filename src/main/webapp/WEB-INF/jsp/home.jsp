@@ -237,7 +237,7 @@ function showPositionError(error) {
 	    };
 	    placeList.push(placeDatum);
           }
-	  pushMarker(placeList);
+	  //pushMarker(placeList);
         }
       }
 
@@ -340,6 +340,8 @@ function showPositionError(error) {
 
                 </div -->
 
+                <div id="restaurantname">
+                </div>
                 <div id="menulist" class="row">
                 </div>
 
@@ -386,7 +388,9 @@ function showPositionError(error) {
 			    "https://b.zmtcdn.com/data/reviews_photos/1a4/536aaf11a602883e505e49676b9cb1a4.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A",
 			    "https://b.zmtcdn.com/data/reviews_photos/0c9/8bafd1b95c54c07993f523f07b6f20c9.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A"
 	    ];
-	  function doMenuList(menulist, elem) {
+	  function doMenuList(menulist, elem, restaName) {
+	    if (restaName != '')
+	    document.getElementById('restaurantname').innerHTML = '<h3 class="text-secondary text-center">' + restaName + '</h3>';
 	    $.each(menulist, function(i, menuitem)
 	    {
 	      document.getElementById(elem).innerHTML =
@@ -500,7 +504,7 @@ alert('i-end:' + i);
 	      {
 	        if (resta.hasOwnProperty("menuItems"))
 		{
-	          doMenuList(resta.menuItems, 'menulist');
+	          doMenuList(resta.menuItems, 'menulist', resta.name);
 		}
 		else
 		{
