@@ -113,7 +113,7 @@ function showPositionError(error) {
 // if we don't have location data, just populate the suggestion menu based on the day of the week.
         $.ajax({
 	  type: "get",
-	  url: "/suggest/food",
+	  url: "/suggest",
 	  data: {
 	    dayOfWeek: dayList[new Date().getDay()],
 	    latitude: 0,
@@ -140,7 +140,7 @@ alert(JSON.stringify([xhr, status, error]));
       function MapUserLocation(position) {
         $.ajax({
 	  type: "get",
-	  url: "/suggest/food",
+	  url: "/suggest",
 	  data: {
 	    dayOfWeek: dayList[new Date().getDay()],
 	    latitude: position.coords.latitude,
