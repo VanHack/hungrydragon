@@ -380,6 +380,7 @@ function showPositionError(error) {
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDy00HmmAp62qnc_Xlr3O6S5yrlyyDoUCw&libraries=places&callback=initMap" async defer></script>
 
 <script>
+	var restaList = {};
 
 	    var imgList = [
 			    "https://b.zmtcdn.com/data/reviews_photos/f27/2cdc7e0c88fe2aa4f49f649737455f27.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A",
@@ -471,6 +472,12 @@ alert('i-end:' + i);
 	    });
 	  }
 
+	  function redoMenuList(restaName) {
+	      // refresh, clear it out
+	      document.getElementById('menulist').innerHTML = '';
+	          doMenuList(restaList[restaName], 'menulist', restaName);
+	  }
+
 	  function doDatum (datum) {
 	    if (!datum.hasOwnProperty("_embedded"))
 	    {
@@ -485,9 +492,10 @@ alert('i-end:' + i);
 	    var isFirst = true;
 	    $.each(datum._embedded.restaurants, function(i, resta)
 	    {
+	      restaList[resta.name] = resta.menuItems;
 	      document.getElementById('restaurants').innerHTML =
 	        document.getElementById('restaurants').innerHTML +
-	        '<a href="#" class="list-group-item">'
+	        '<a onClick="redoMenuList(&quot;' + resta.name + '&quot;); return false;" href="#" class="list-group-item">'
 	        + resta.name + '</a>';
 
 	      /*document.getElementById('restaurant-carousel').innerHTML =
