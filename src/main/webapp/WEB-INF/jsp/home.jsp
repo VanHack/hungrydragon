@@ -63,7 +63,9 @@
         <!-- /.container -->
     </nav>
 
+    <div class="well fluid-image mx-auto d-block">
        <div id="map"></div>
+    </div>
     <!-- Page Content -->
     <div class="container">
 
@@ -121,7 +123,7 @@ function showPositionError(error) {
 	  contentType: "application/json; charset=utf-8",
 	  traditional: true,
 	  success: function(datum) {
-	    doMenuList(datum, 'suggestedmenulist');
+	    doSuggest(datum, 'suggestedmenulist');
 	  },
 	  error: function(xhr, status, error) {
 alert(JSON.stringify([xhr, status, error]));
@@ -148,7 +150,7 @@ alert(JSON.stringify([xhr, status, error]));
 	  contentType: "application/json; charset=utf-8",
 	  traditional: true,
 	  success: function(datum) {
-	    doMenuList(datum, 'suggestedmenulist');
+	    doSuggest(datum, 'suggestedmenulist');
 	  },
 	  error: function(xhr, status, error) {
 alert(JSON.stringify([xhr, status, error]));
@@ -230,10 +232,29 @@ alert(JSON.stringify([xhr, status, error]));
       }
  </script>
 
-        <div>
+        <div class="col-md-9">
 	  <h2 class="text-secondary text-center">Recommended For You</h2>
-          <div id="suggestedmenulist" class="row">
-          </div>
+                <div class="row carousel-holder">
+
+                    <div class="col-md-12">
+                        <div id="carousel-suggested-menu" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carousel-suggested-menu" data-slide-to="0" class="active"></li>
+                                <li data-target="#carousel-suggested-menu" data-slide-to="1"></li>
+                                <li data-target="#carousel-suggested-menu" data-slide-to="2"></li>
+                            </ol>
+                            <div id="suggestedmenulist" class="carousel-inner">
+                            </div>
+                            <a class="left carousel-control" href="#carousel-suggested-menu" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-suggested-menu" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
         </div>
 
         <div class="row">
@@ -307,7 +328,6 @@ alert(JSON.stringify([xhr, status, error]));
 
 <script>
 
-	  function doMenuList(menulist, elem) {
 	    var imgList = [
 			    "https://b.zmtcdn.com/data/reviews_photos/f27/2cdc7e0c88fe2aa4f49f649737455f27.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A",
 			    "https://b.zmtcdn.com/data/reviews_photos/468/a0a814d7a4ada12764987ce450fd8468.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A",
@@ -315,6 +335,7 @@ alert(JSON.stringify([xhr, status, error]));
 			    "https://b.zmtcdn.com/data/reviews_photos/1a4/536aaf11a602883e505e49676b9cb1a4.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A",
 			    "https://b.zmtcdn.com/data/reviews_photos/0c9/8bafd1b95c54c07993f523f07b6f20c9.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A"
 	    ];
+	  function doMenuList(menulist, elem) {
 	    $.each(menulist, function(i, menuitem)
 	    {
 	      document.getElementById(elem).innerHTML =
@@ -331,6 +352,25 @@ alert(JSON.stringify([xhr, status, error]));
                             '</div>' +
                         '</div>' +
                     '</div>';
+	    });
+	  }
+
+	  function doSuggest (suggested, menulist) {
+	    var isFirst = true;
+	    $.each(suggested, function(i, menuitem)
+	    {
+	      document.getElementById(menulist).innerHTML =
+	        document.getElementById(menulist).innerHTML +
+		(isFirst ? '<div class="item active">' :
+		'<div class="item">') +
+		'<h1 class="text-primary text-center">' +
+		menuitem.name
+		+ '</h1>' +
+		'<img class="slide-image mx-auto d-block" src="' +
+		imgList[(Math.floor(Math.random() * 10 * imgList.length) % imgList.length)]
+		+ '" alt="' + menuitem.name + '">' +
+                                '</div>';
+	      isFirst = false;
 	    });
 	  }
 
@@ -368,7 +408,7 @@ alert(JSON.stringify([xhr, status, error]));
 	        if (resta.hasOwnProperty("menuItems"))
 		{
 	          doMenuList(resta.menuItems, 'menulist');
-	          doMenuList(resta.menuItems, 'suggestedmenulist');
+	          doSuggest(resta.menuItems, 'suggestedmenulist');
 		}
 		else
 		{
