@@ -342,6 +342,8 @@ function showPositionError(error) {
 
                 <div id="restaurantname">
                 </div>
+                <div id="restaurantaddress">
+                </div>
                 <div id="menulist" class="row">
                 </div>
 
@@ -381,6 +383,7 @@ function showPositionError(error) {
 
 <script>
 	var restaList = {};
+	var restaAddress = {};
 
 	    var imgList = [
 			    "https://b.zmtcdn.com/data/reviews_photos/f27/2cdc7e0c88fe2aa4f49f649737455f27.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A",
@@ -391,7 +394,10 @@ function showPositionError(error) {
 	    ];
 	  function doMenuList(menulist, elem, restaName) {
 	    if (restaName != '')
-	    document.getElementById('restaurantname').innerHTML = '<h3 class="text-secondary text-center">' + restaName + '</h3>';
+	    {
+	      document.getElementById('restaurantname').innerHTML = '<h3 class="text-secondary text-center">' + restaName + '</h3>';
+	      document.getElementById('restaurantaddress').innerHTML = '<h3 class="text-secondary text-center">' + restaAddress[restaName] + '</h3>';
+	    }
 	    $.each(menulist, function(i, menuitem)
 	    {
 	      document.getElementById(elem).innerHTML =
@@ -493,6 +499,7 @@ alert('i-end:' + i);
 	    $.each(datum._embedded.restaurants, function(i, resta)
 	    {
 	      restaList[resta.name] = resta.menuItems;
+	      restaAddress[resta.name] = resta.address;
 	      document.getElementById('restaurants').innerHTML =
 	        document.getElementById('restaurants').innerHTML +
 	        '<a onClick="redoMenuList(&quot;' + resta.name + '&quot;); return false;" href="#" class="list-group-item">'
