@@ -9,8 +9,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  * @author Fahad Ahmed
  */
 @SpringBootApplication
-@EnableJpaRepositories(value = "/rest/")
-@ComponentScan(value = "com.dragons.hungrydragon")
+@EnableJpaRepositories("com.dragons.hungrydragon.repos")
+@ComponentScan("com.dragons.hungrydragon")
 public class HungrydragonApplication {
 
 	public static void main(String[] args) {
