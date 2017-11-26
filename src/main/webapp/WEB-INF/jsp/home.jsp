@@ -169,8 +169,7 @@ function showPositionError(error) {
 	  contentType: "application/json; charset=utf-8",
 	  traditional: true,
 	  success: function(datum) {
-	    //doSuggest(datum, 'suggestedmenulist');
-	    doMenuList(datum, 'suggestedmenulist');
+	    doSuggest(datum, 'suggestedmenulist');
 	  },
 	  error: function(xhr, status, error) {
 	   doSnackbar('Got error! ' + error);
@@ -198,8 +197,7 @@ function showPositionError(error) {
 	  contentType: "application/json; charset=utf-8",
 	  traditional: true,
 	  success: function(datum) {
-	    //doSuggest(datum, 'suggestedmenulist');
-	    doMenuList(datum, 'suggestedmenulist');
+	    doSuggest(datum, 'suggestedmenulist');
 	  },
 	  error: function(xhr, status, error) {
 	   doSnackbar('Got error! ' + error);
@@ -448,6 +446,25 @@ alert('i-end:' + i);
 	    });
 	  }
 */
+
+	  function doSuggest (suggested, menulist) {
+	    var isFirst = true;
+	    $.each(suggested, function(i, menuitem)
+	    {
+	      document.getElementById(menulist).innerHTML =
+	        document.getElementById(menulist).innerHTML +
+		(isFirst ? '<div class="item active">' :
+		'<div class="item">') +
+		'<h1 class="text-primary text-center">' +
+		menuitem.name
+		+ '</h1>' +
+		'<img class="slide-image mx-auto d-block" src="' +
+		imgList[(Math.floor(Math.random() * 10 * imgList.length) % imgList.length)]
+		+ '" alt="' + menuitem.name + '">' +
+                                '</div>';
+	      isFirst = false;
+	    });
+	  }
 
 	  function doDatum (datum) {
 	    if (!datum.hasOwnProperty("_embedded"))
