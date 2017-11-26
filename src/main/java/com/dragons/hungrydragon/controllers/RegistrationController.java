@@ -26,6 +26,12 @@ public class RegistrationController {
 	return "home";
     }
 
+    @RequestMapping(value = "/postrestaurantlist", method = RequestMethod.POST)
+    public String saveNewRestaurant( @RequestParam("datalist") String datalist ) {
+	System.out.println("SpringTesting! " + datalist);
+	return "home";
+    }
+
 
     @GetMapping(value = "/user")
     public String showRegisterUser(){

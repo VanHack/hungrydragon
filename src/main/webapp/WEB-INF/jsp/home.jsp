@@ -133,29 +133,70 @@ function showPositionError(error) {
 	  var placeList = [];
           for (var i = 0; i < results.length; i++) {
             createMarker(results[i]);
-            passMarker(results[i]);
+	    var place = results[i];
+            var placeLoc = place.geometry.location;
+//alert(JSON.stringify(place));
+//alert(JSON.stringify(placeLoc));
+//alert(JSON.stringify(placeLoc.lat));
+//alert(JSON.stringify(placeLoc.lng));
 	    var placeDatum = {
-	      address: place.formatted_address,
-	      latitude: place.geometry.location.latitude,
-	      longitude: place.geometry.location.longitude,
+	      address: place.vicinity,
+// why doesn't this work ?!
+	      //latitude = placeLoc.lat;
+	      //longitude = placeLoc.lng;
+	      latitude: 0,
+	      longitude: 0,
+	      location: placeLoc,
 	      restaurantName: place.name
 	    };
+// why doesn't this work ?!
+	    //placeDatum.latitude = placeLoc["lat"];
+	    //placeDatum.longitude = placeLoc["lng"];
+	    /* even this doesn't work!
+	    var propKeys = Object.keys(placeLoc);
+alert(JSON.stringify(propKeys));
+	    for (var i = 0; i < propKeys.length; i+=1)
+	    {
+	      if (i == 0) {
+	      	placeDatum.latitude = placeLoc[propKeys[i]];
+	      } else {
+	      	placeDatum.longitude = placeLoc[propKeys[i]];
+	      }
+	    }
+	    */
+//alert(JSON.stringify(placeDatum));
 	    placeList.push(placeDatum);
           }
-	  //pushMarker(placeList);
+	  pushMarker(placeList);
         }
       }
 
       function pushMarker(placeList) {
+	var newPlaceList = {
+	  datalist: JSON.stringify(placeList)
+	};
         $.ajax({
 	  type: "post",
-	  url: "/TODO",
+	  url: "/register/postrestaurantlist",
 	  dataType: "json",
-	  contentType: "application/json; charset=utf-8",
+	  //contentType: "application/json; charset=utf-8",
+	  contentType: "application/x-www-form-urlencoded",
 	  traditional: true,
 	  success: function(datum) {
 	  },
-	  data: JSON.stringify(placeList)
+	  error: function(xhr, status, error) {
+	    if (xhr.hasOwnProperty("readyState"))
+	    {
+	      if (xhr.readyState == 4)
+	      {
+		// TODO FIXME solve the parseerror
+		return;
+	      }
+	    }
+alert(JSON.stringify([xhr, status, error]));
+	  },
+	  //data: JSON.stringify(placeList)
+	  data: newPlaceList
 	});
       }
 
