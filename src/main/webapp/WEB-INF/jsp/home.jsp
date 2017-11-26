@@ -77,6 +77,16 @@
 </style>
 <!-- derived from https://www.w3schools.com/html/html5_geolocation.asp and https://developers.google.com/maps/documentation/javascript/examples/place-search  -->
  <script>
+	var dayList = [
+	  "Sunday",
+	  "Monday",
+	  "Tuesday",
+	  "Wednesday",
+	  "Thursday",
+	  "Friday",
+	  "Saturday"
+	];
+
       var map;
       var infowindow;
 
@@ -98,6 +108,25 @@ function showPositionError(error) {
             document.getElementById("map").innerHTML = "It should be impossible to see this text."
             break;
     }
+// if we don't have location data, just populate the suggestion menu based on the day of the week.
+        $.ajax({
+	  type: "get",
+	  url: "/suggest/food",
+	  data: {
+	    dayOfWeek: dayList[new Date().getDay()],
+	    latitude: 0,
+	    longitude: 0
+	  },
+	  dataType: "json",
+	  contentType: "application/json; charset=utf-8",
+	  traditional: true,
+	  success: function(datum) {
+	    doMenuList(datum, 'suggestedmenulist');
+	  },
+	  error: function(xhr, status, error) {
+alert(JSON.stringify([xhr, status, error]));
+	  }
+	});
 } 
       function initMap() {
     if (navigator.geolocation) {
@@ -107,6 +136,24 @@ function showPositionError(error) {
     }
      }
       function MapUserLocation(position) {
+        $.ajax({
+	  type: "get",
+	  url: "/suggest/food",
+	  data: {
+	    dayOfWeek: dayList[new Date().getDay()],
+	    latitude: position.coords.latitude,
+	    longitude: position.coords.longitude
+	  },
+	  dataType: "json",
+	  contentType: "application/json; charset=utf-8",
+	  traditional: true,
+	  success: function(datum) {
+	    doMenuList(datum, 'suggestedmenulist');
+	  },
+	  error: function(xhr, status, error) {
+alert(JSON.stringify([xhr, status, error]));
+	  }
+	});
         var pyrmont = {lat: position.coords.latitude, lng: position.coords.longitude};
         doMap(pyrmont);
       }
@@ -138,7 +185,6 @@ function showPositionError(error) {
 	      longitude: placeLoc.lng(),
 	      restaurantName: place.name
 	    };
-alert(JSON.stringify(placeDatum));
 	    placeList.push(placeDatum);
           }
 	  pushMarker(placeList);
@@ -340,20 +386,6 @@ alert(JSON.stringify([xhr, status, error]));
 	  traditional: true,
 	  success: function(datum) {
 	    doDatum(datum);
-	  },
-	  error: function(xhr, status, error) {
-alert(JSON.stringify([xhr, status, error]));
-	  }
-	});
-
-        $.ajax({
-	  type: "get",
-	  url: "/suggest/food",
-	  dataType: "json",
-	  contentType: "application/json; charset=utf-8",
-	  traditional: true,
-	  success: function(datum) {
-	    doMenuList(datum, 'suggestedmenulist');
 	  },
 	  error: function(xhr, status, error) {
 alert(JSON.stringify([xhr, status, error]));
