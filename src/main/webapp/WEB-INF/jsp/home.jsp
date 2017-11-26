@@ -242,19 +242,7 @@ alert(JSON.stringify([xhr, status, error]));
                                 <li data-target="#carousel-example-generic" data-slide-to="1"></li>
                                 <li data-target="#carousel-example-generic" data-slide-to="2"></li>
                             </ol>
-                            <div class="carousel-inner">
-                                <div class="item active">
-					<h1 class="text-primary text-center">Dragon Palace</h1>
-                                    <img class="slide-image" src="https://maps.zomato.com/osm/14/3764/5564.png" alt="Dragon Palace">
-                                </div>
-                                <div class="item">
-					<h1 class="text-primary text-center">Golden Dragon</h1>
-                                    <img class="slide-image" src="https://maps.zomato.com/osm/14/3772/5562.png" alt="Golden Dragon">
-                                </div>
-                                <div class="item">
-					<h1 class="text-primary text-center">Dragon Express</h1>
-                                    <img class="slide-image" src="http://a.tile.osm.org/15/7543/11129.png" alt="Dragon Express">
-                                </div>
+                            <div id="restaurant-carousel" class="carousel-inner">
                             </div>
                             <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
                                 <span class="glyphicon glyphicon-chevron-left"></span>
@@ -426,12 +414,25 @@ alert(JSON.stringify([xhr, status, error]));
 	      // TODO signal error
 	      return;
 	    }
+	    var isFirst = true;
 	    $.each(datum._embedded.restaurants, function(i, resta)
 	    {
 	      document.getElementById('restaurants').innerHTML =
 	        document.getElementById('restaurants').innerHTML +
 	        '<a href="#" class="list-group-item">'
 	        + resta.name + '</a>';
+
+	      document.getElementById('restaurant-carousel').innerHTML =
+	        document.getElementById('restaurant-carousel').innerHTML +
+		(isFirst ? '<div class="item active">' :
+		'<div class="item">') +
+		'<h1 class="text-primary text-center">' +
+		resta.name
+		+ '</h1>' +
+		'<img class="slide-image" src="https://maps.zomato.com/osm/14/3764/5564.png" alt="' +
+		resta.name + '">' +
+                                '</div>';
+	      isFirst = false;
 	    });
 	  }
         $.ajax({
