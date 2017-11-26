@@ -241,7 +241,7 @@ function showPositionError(error) {
         }
       }
 
-      function pushMarker(placeList) {
+      /*function pushMarker(placeList) {
         $.ajax({
 	  type: "post",
 	  url: "/register/postrestaurantlist",
@@ -265,7 +265,7 @@ function showPositionError(error) {
 	  },
 	  data: placeList
 	});
-      }
+      }*/
 
       function createMarker(place) {
         var placeLoc = place.geometry.location;
@@ -309,10 +309,11 @@ function showPositionError(error) {
         <div class="row">
 
             <div class="col-md-3">
-                <details open><summary><p class="lead">Select Restaurant</p></a></summary>
+                <!--<details open>-->
+                <summary><p class="lead">Select Restaurant</p></summary>
                 <div id="restaurants" class="list-group">
                 </div>
-                </details>
+                <!--</details>-->
             </div>
 
             <div class="col-md-9">
