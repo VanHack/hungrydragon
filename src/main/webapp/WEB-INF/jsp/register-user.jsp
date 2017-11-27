@@ -2,125 +2,50 @@
   Author: Fahad Ahmed
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
-<html>
-<head>
-<!-- template from https://codepen.io/AJALACOMFORT/pen/oLpPPR by Ajala Comfort -->
-    <title>Hungry Dragon - Food Delivery Service User Signup</title>
-<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700" rel="stylesheet"> 
-</head>
-<body>
+<html lang="en">
+  <head>
+<!-- from https://getbootstrap.com/docs/4.0/examples/signin/ -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="https://getbootstrap.com/favicon.ico">
 
-  <div id="space"></div>
+    <title>Signin Template for Bootstrap</title>
 
-        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-        <script src="https://fb.me/react-15.1.0.min.js"></script>
-        <script src="https://fb.me/react-dom-15.1.0.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+    <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<script type="text/babel">
-class Signup extends React.Component {
-      constructor(props){
-	super(props);
-	this.state = {
-	  firstname: '',
-	  lastname: '',
-	  address: '',
-	  username: '',
-	  password: '',
-	  passwordconfirm: '',
-	  ezmail: ''
-	};
-        this.handleFirstnameChange = this.handleFirstnameChange.bind(this);
-        this.handleLastnameChange = this.handleLastnameChange.bind(this);
-        this.handleAddressChange = this.handleAddressChange.bind(this);
-        this.handleUsernameChange = this.handleUsernameChange.bind(this);
-        this.handlePasswordChange = this.handlePasswordChange.bind(this);
-        this.handlePasswordConfirmChange = this.handlePasswordConfirmChange.bind(this);
-        this.handleEzmailChange = this.handleEzmailChange.bind(this);
-        this.handleClick = this.handleClick.bind(this);
-      }
-      handleFirstnameChange(e){
-        this.setState({firstname: e.target.value});
-      }
-      handleLastnameChange(e){
-        this.setState({lastname: e.target.value});
-      }
-      handleAddressChange(e){
-        this.setState({address: e.target.value});
-      }
-      handleUsernameChange(e){
-        this.setState({username: e.target.value});
-      }
-      handlePasswordChange(e){
-        this.setState({password: e.target.value});
-      }
-      handlePasswordConfirmChange(e){
-        this.setState({passwordconfirm: e.target.value});
-      }
-      handleEzmailChange(e){
-        this.setState({ezmail: e.target.value});
-      }
-      handleClick(){
-        if (this.state.password != this.state.passwordconfirm)
-	{
-	  alert('Error! Password fields do not match!');
-	  return;
-	}
-        alert(this.state.firstname + ' ' + this.state.lastname + ' ' + this.state.address + ' ' + this.state.username + ' ' + this.state.password + ' ' + this.state.ezmail);
-	var newSignup = {
-		first_name: this.state.firstname,
-		last_name: this.state.lastname,
-		address: this.state.address,
-		username: this.state.username,
-		password: this.state.password,
-		email: this.state.ezmail
-	};
-        $.ajax({
-	  type: "post",
-	  url: "/register/postuser",
-	  dataType: "json",
-	  //contentType: "application/json; charset=utf-8",
-	  contentType: "application/x-www-form-urlencoded",
-	  traditional: true,
-	  success: function(datum) {
-	    window.location='/';
-	  },
-	  error: function(xhr, status, error) {
-	    if (xhr.hasOwnProperty("readyState"))
-	    {
-	      if (xhr.readyState == 4)
-	      {
-		// TODO FIXME solve the parseerror
-	        window.location='/';
-	      }
-	    }
-alert(JSON.stringify([xhr, status, error]));
-	  },
-	  //data: JSON.stringify(newSignup)
-	  data: newSignup
-	});
-      }
-      render(){
-            return (
-            <div>
-                   
-                  <div id="signup">
-                        <input type="text" id="first_name" placeholder="First Name" value={this.state.firstname} onChange={this.handleFirstnameChange} />
-                        <input type="text" id="last_name" placeholder="Last Name" value={this.state.lastname} onChange={this.handleLastnameChange} />
-                        <input type="text" id="address" placeholder="Delivery Address" value={this.state.address} onChange={this.handleAddressChange} />
-                        <input type="text" id="username" placeholder="Username" value={this.state.username} onChange={this.handleUsernameChange} />
-                        <input type="password" id="password" placeholder="Password" value={this.state.password} onChange={this.handlePasswordChange} />
-                        <input type="password" id="confirm" placeholder="Confirm Password" value={this.state.passwordconfirm} onChange={this.handlePasswordConfirmChange} />
-                        <input type="text" id="ezmail" placeholder="E-mail" value={this.state.ezmail} onChange={this.handleEzmailChange} />
-                    <button id="send" onClick={this.handleClick} >Send</button>
-            </div>
-                </div>
-            
-            )
-      }
-};
+    <!-- Custom styles for this template -->
+    <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet">
+  </head>
 
-ReactDOM.render(<Signup/>,document.getElementById("space"));
-</script>
-</body>
+  <body>
+
+    <div class="container">
+
+      <form class="form-signin">
+        <h2 class="form-signin-heading">Please sign up</h2>
+        <label for="inputFirst" class="sr-only">First Name</label>
+        <input type="text" id="inputFirst" class="form-control" placeholder="First Name" required autofocus>
+        <label for="inputLast" class="sr-only">Last Name</label>
+        <input type="text" id="inputLast" class="form-control" placeholder="Last Name" required autofocus>
+        <label for="inputAddr" class="sr-only">Address</label>
+        <input type="text" id="inputAddr" class="form-control" placeholder="Delivery address" required autofocus>
+        <label for="inputUser" class="sr-only">Username</label>
+        <input type="text" id="inputUser" class="form-control" placeholder="Username" required autofocus>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+
+    </div> <!-- /container -->
+  </body>
 </html>
