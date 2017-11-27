@@ -24,17 +24,18 @@
 
     <div class="container">
 
-      <form class="form-signin">
+      <form action="/register/postrestaurant" method="POST" class="form-signin">
         <h2 class="form-signin-heading">Please submit your restaurant</h2>
         <label for="inputName" class="sr-only">Restaurant Name</label>
-        <input type="text" id="inputName" class="form-control" placeholder="Restaurant Name" required autofocus>
+        <input type="text" id="inputName" name="name" class="form-control" placeholder="Restaurant Name" required autofocus>
         <label for="inputAddr" class="sr-only">Address</label>
-        <input type="text" id="inputAddr" class="form-control" placeholder="Address" required autofocus>
+        <input type="text" id="inputAddr" name="address" class="form-control" placeholder="Address" required autofocus>
         <label for="inputLat" class="sr-only">Latitude</label>
-        <input type="text" id="inputLat" class="form-control" placeholder="Latitude" required autofocus>
+        <input type="text" id="inputLat" name="latitude" class="form-control" placeholder="Latitude" required autofocus>
         <label for="inputLng" class="sr-only">Longitude</label>
-        <input type="text" id="inputLng" class="form-control" placeholder="Longitude" required autofocus>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <input type="text" id="inputLng" name="longitude" class="form-control" placeholder="Longitude" required autofocus>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+
       </form>
 
     </div> <!-- /container -->
