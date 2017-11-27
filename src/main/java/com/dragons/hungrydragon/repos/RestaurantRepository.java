@@ -9,4 +9,5 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
  */
 @RepositoryRestResource(collectionResourceRel = "restaurants", path = "restaurants")
 public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
+    public Restaurant findByName(String name);
 }
