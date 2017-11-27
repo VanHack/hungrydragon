@@ -2,107 +2,42 @@
   Author: Fahad Ahmed
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
-<html>
-<head>
-<!-- template from https://codepen.io/AJALACOMFORT/pen/oLpPPR by Ajala Comfort -->
-    <title>Hungry Dragon - Food Delivery Service Login</title>
-<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700" rel="stylesheet"> 
-<link href="https://raw.githubusercontent.com/post-j-ma/hungrydragon/master/website/css/login.css" rel="stylesheet"> 
+<html lang="en">
+  <head>
+<!-- from https://getbootstrap.com/docs/4.0/examples/signin/ -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="https://getbootstrap.com/favicon.ico">
 
-    <!-- Bootstrap Core CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
+    <title>Signin Template for Bootstrap</title>
 
-  <div id="space"></div>
+    <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 
-        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-        <script src="https://fb.me/react-15.1.0.min.js"></script>
-        <script src="https://fb.me/react-dom-15.1.0.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+    <!-- Custom styles for this template -->
+    <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet">
+  </head>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <body>
 
-<script type="text/babel">
-class Login extends React.Component {
-      constructor(props){
-	super(props);
-	this.state = {
-	  username: '',
-	  password: ''
-	};
-        this.handleUsernameChange = this.handleUsernameChange.bind(this);
-        this.handlePasswordChange = this.handlePasswordChange.bind(this);
-        this.handleClick = this.handleClick.bind(this);
-      }
-      handleUsernameChange(e){
-        this.setState({username: e.target.value});
-      }
-      handlePasswordChange(e){
-        this.setState({password: e.target.value});
-      }
-      handleClick(){
-        alert(this.state.username + ' ' + this.state.password);
-	var newLogin = {
-		username: this.state.username,
-		password: this.state.password
-	};
-        $.ajax({
-	  type: "post",
-	  url: "/auth/postlogin",
-	  dataType: "json",
-	  //contentType: "application/json; charset=utf-8",
-	  contentType: "application/x-www-form-urlencoded",
-	  traditional: true,
-	  success: function(datum) {
-	    window.location='/';
-	  },
-	  error: function(xhr, status, error) {
-	    if (xhr.hasOwnProperty("readyState"))
-	    {
-	      if (xhr.readyState == 4)
-	      {
-		// TODO FIXME solve the parseerror
-	        window.location='/';
-	      }
-	    }
-alert(JSON.stringify([xhr, status, error]));
-	  },
-	  //data: JSON.stringify(newLogin)
-	  data: newLogin
-	});
-      }
-      render(){
-        
-        
-        
-            return (
-            
-                  <div>
-                              
-                 <div id="login">
-		    <div class="well mx-auto d-block" align="center">
-		    <div class="row">
-                    <input type="text" id="username" placeholder="Username" value={this.state.username} onChange={this.handleUsernameChange} />
-		    </div>
-		    <div class="row">
-                    <input type="password" id="password" placeholder="Password" value={this.state.password} onChange={this.handlePasswordChange} />
-		    </div>
-		    <div class="row">
-                    <button id="send" onClick={this.handleClick} >Send</button>
-		    </div>
-		    </div>
-            </div>
-                
-                  </div>
-              
-            )
-      }
-};
+    <div class="container">
 
+      <form class="form-signin">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
 
-ReactDOM.render(<Login/>,document.getElementById("space"));
-</script>
-</body>
+    </div> <!-- /container -->
+  </body>
 </html>
