@@ -7,6 +7,10 @@
 <!-- template from https://codepen.io/AJALACOMFORT/pen/oLpPPR by Ajala Comfort -->
     <title>Hungry Dragon - Food Delivery Service Login</title>
 <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700" rel="stylesheet"> 
+<link href="https://raw.githubusercontent.com/post-j-ma/hungrydragon/master/website/css/login.css" rel="stylesheet"> 
+
+    <!-- Bootstrap Core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
@@ -16,6 +20,9 @@
         <script src="https://fb.me/react-15.1.0.min.js"></script>
         <script src="https://fb.me/react-dom-15.1.0.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <script type="text/babel">
 class Login extends React.Component {
@@ -75,9 +82,17 @@ alert(JSON.stringify([xhr, status, error]));
                   <div>
                               
                  <div id="login">
+		    <div class="well mx-auto d-block" align="center">
+		    <div class="row">
                     <input type="text" id="username" placeholder="Username" value={this.state.username} onChange={this.handleUsernameChange} />
+		    </div>
+		    <div class="row">
                     <input type="password" id="password" placeholder="Password" value={this.state.password} onChange={this.handlePasswordChange} />
+		    </div>
+		    <div class="row">
                     <button id="send" onClick={this.handleClick} >Send</button>
+		    </div>
+		    </div>
             </div>
                 
                   </div>
