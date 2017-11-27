@@ -48,6 +48,15 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
+                        <a href="/auth/login">Login</a>
+                    </li>
+                    <li>
+                        <a href="/register/user">Sign up</a>
+                    </li>
+                    <li>
+                        <a href="/register/restaurant">Submit Restaurant</a>
+                    </li>
+                    <li>
                         <a href="#">About</a>
                     </li>
                     <li>
@@ -396,7 +405,7 @@ function showPositionError(error) {
 	    if (restaName != '')
 	    {
 	      document.getElementById('restaurantname').innerHTML = '<h3 class="text-secondary text-center">' + restaName + '</h3>';
-	      document.getElementById('restaurantaddress').innerHTML = '<h3 class="text-secondary text-center">' + restaAddress[restaName] + '</h3>';
+	      document.getElementById('restaurantaddress').innerHTML = '<h4 class="text-secondary text-center">' + restaAddress[restaName] + '</h4>';
 	    }
 	    $.each(menulist, function(i, menuitem)
 	    {
